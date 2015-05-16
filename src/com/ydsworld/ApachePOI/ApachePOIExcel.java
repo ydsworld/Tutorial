@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.lang.invoke.SwitchPoint;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.hamcrest.core.SubstringMatcher;
 
 
 public class ApachePOIExcel {
@@ -32,8 +35,9 @@ public class ApachePOIExcel {
 	      XSSFWorkbook workbook = new XSSFWorkbook(fis);
 	      XSSFSheet spreadsheet = workbook.getSheetAt(0);
 	      Iterator < Row > rowIterator = spreadsheet.iterator();
-	      final StringBuilder b = new StringBuilder();
-	      SimpleDateFormat sdf = new SimpleDateFormat("MM/dd");
+	      final StringBuilder sb = new StringBuilder();
+	      SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	      Date currentDate = new Date();
 	      
 	      while (rowIterator.hasNext()) 
 	      {
@@ -41,17 +45,16 @@ public class ApachePOIExcel {
 	         row = (Row) rowIterator.next();
 	         Cell cell =  row.getCell(0);
 	        
-	         b.append(cell.toString()+",");
-	        // list.add(cell.toString());
-	         
 	         switch (cell.getCellType()) 
 	            {
 	               case Cell.CELL_TYPE_NUMERIC:
 	            	   if (DateUtil.isCellDateFormatted(cell)) {
 	            		   try {
-
-	            			    list.add(sdf.format(cell.getDateCellValue()));
-	            		//	    System.out.println(sdf.format(cell.getDateCellValue()));
+                                if(sb.length()>0) {
+                                	sb.deleteCharAt(sb.length()-1); 
+                                	sb.append("-"); 
+                                }
+	            			    sb.append(sdf.format(cell.getDateCellValue()) + ":");
 
 	            			    } catch (Exception e) {
 	            			            e.printStackTrace();
@@ -62,19 +65,28 @@ public class ApachePOIExcel {
 	                    }
 	                    break;
 	               case Cell.CELL_TYPE_STRING:
-	            	   list.add(cell.getStringCellValue());
-	              // System.out.print(cell.getStringCellValue() + " \t\t " );
+	            	  sb.append(cell.getStringCellValue() + ",");
 	               
 	            }
 	         
-	      }//white
+	      }//while
 	      fis.close();
+
+	      list = new ArrayList(Arrays.asList(sb.toString().split("-")));
 	      
+	     
+	      //for(String item:list){
 	      for(int i=0; i<list.size();i++){
+	    	  	Date temp = sdf.parse(list.get(i).substring(0,10));
+	    	  
+	    	  if (currentDate.after(temp)){
+	    		  list.remove(i);
+	    	  }
+	    	 
 	    	  System.out.println(list.get(i));
-		  }
+	      }
 	      
-	      //System.out.println(b.toString());
+
 	   }
 	   
 	   
