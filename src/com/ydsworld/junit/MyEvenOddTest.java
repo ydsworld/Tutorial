@@ -8,10 +8,21 @@ public class MyEvenOddTest {
 
 	@Test
 	public void test() {
-		MyEvenOdd meo = new MyEvenOdd();
+		CheckEvenOdd meo = new CheckEvenOdd();
 		meo.isEvenNumber(13);
 		//assertEquals("True", );
 		 assertEquals(false, meo.isEvenNumber(13));
 	}
 
+}
+
+class CheckEvenOdd {
+
+	public boolean isEvenNumber(int number){
+		if (number%2 == 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
