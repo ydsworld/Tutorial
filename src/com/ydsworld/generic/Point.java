@@ -1,6 +1,6 @@
 package com.ydsworld.generic;
 
-public class Point {
+public class Point implements Comparable<Point> {
 	int x;
 	int y;
 	
@@ -26,7 +26,21 @@ public class Point {
 	
 	@Override
 	public String toString(){
-		//System.out.println("x : "+ this.x + " y :" + this.y);
 		return "x : "+ this.x + " y :" + this.y;
+	}
+
+	@Override
+	public int compareTo(Point o) {
+		if (this.x < o.x){
+			return -1;
+		} else if (this.x > o.x){
+		  	return 1;
+		} else if (this.y < o.y){
+			return -1;
+		} else if (this.y > o.y){
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 }
