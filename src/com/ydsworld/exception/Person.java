@@ -1,4 +1,4 @@
-package com.ydsworld.Exception;
+package com.ydsworld.exception;
 
 public class Person {
 	private String name;

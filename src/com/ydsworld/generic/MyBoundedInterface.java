@@ -1,4 +1,4 @@
-package com.ydsworld.Generic;
+package com.ydsworld.generic;
 
 public class MyBoundedInterface {
  

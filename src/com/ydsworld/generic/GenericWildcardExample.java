@@ -1,4 +1,4 @@
-package com.ydsworld.Generic;
+package com.ydsworld.generic;
 
 import java.util.Arrays;
 import java.util.List;

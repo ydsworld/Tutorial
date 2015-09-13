@@ -1,4 +1,4 @@
-package com.ydsworld.Collections;
+package com.ydsworld.collections;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

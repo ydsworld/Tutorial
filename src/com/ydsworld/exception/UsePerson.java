@@ -1,4 +1,4 @@
-package com.ydsworld.Exception;
+package com.ydsworld.exception;
 
 public class UsePerson {
 	public static void main(String[] args) {
