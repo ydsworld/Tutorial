@@ -1,4 +1,4 @@
-package com.ydsworld.generic;
+package com.ydsworld.Generic;
 
 public class Point implements Comparable<Point> {
 	int x;

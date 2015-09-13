@@ -1,4 +1,4 @@
-package com.ydsworld.exception;
+package com.ydsworld.Exception;
 
 public class BadAgeException extends Exception {
 	

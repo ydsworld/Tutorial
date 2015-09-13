@@ -1,4 +1,4 @@
-package com.ydsworld.collections;
+package com.ydsworld.Collections;
 
 public class CD {
 	private int id;
